@@ -12,8 +12,9 @@ def storage_information_view(request):
         entered_at = localtime(visit.entered_at)
         leaved_at = localtime(visit.leaved_at)
         duration = get_duration(leave=leaved_at, enter=entered_at)
-        flag = is_visit_long(duration=duration)
-        duration = format_duration(duration)
+        flag = is_visit_long(duration=duration, hour=1)
+        duration = duration.total_seconds()
+        duration = format_duration(duration=duration)
 
         person_info = {
             'who_entered': name,

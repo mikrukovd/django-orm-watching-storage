@@ -14,7 +14,8 @@ def passcard_info_view(request, passcode):
         enter = localtime(visit.entered_at)
         leave = localtime(visit.leaved_at)
         duration = get_duration(enter=enter, leave=leave)
-        flag = is_visit_long(duration=duration)
+        flag = is_visit_long(duration=duration, hour=1)
+        duration = duration.total_seconds()
         duration = format_duration(duration=duration)
         visit_data = {
             'entered_at': enter,
