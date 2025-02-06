@@ -17,11 +17,13 @@ def passcard_info_view(request, passcode):
         flag = is_visit_long(duration=duration, hour=1)
         duration = duration.total_seconds()
         duration = format_duration(duration=duration)
+
         visit_data = {
             'entered_at': enter,
             'duration': duration,
             'is_strange': flag
         }
+
         this_passcard_visits.append(visit_data)
 
     context = {
