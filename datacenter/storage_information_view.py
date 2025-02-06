@@ -7,6 +7,7 @@ from datacenter.models import get_duration, format_duration, is_visit_long
 def storage_information_view(request):
     visits_not_leaved = Visit.objects.filter(leaved_at=None)
     non_closed_visits = []
+
     for visit in visits_not_leaved:
         name = visit.passcard.owner_name
         entered_at = localtime(visit.entered_at)
@@ -22,7 +23,9 @@ def storage_information_view(request):
             'duration': duration,
             'is_strange': flag
         }
+
         non_closed_visits.append(person_info)
+
     context = {
         'non_closed_visits': non_closed_visits,
     }
