@@ -1,8 +1,4 @@
 from django.db import models
-import datetime
-
-SECONDS_IN_HOUR = 3600
-SECONDS_IN_MINUTE = 60
 
 
 class Passcard(models.Model):
@@ -32,20 +28,3 @@ class Visit(models.Model):
                 if self.leaved_at else 'not leaved'
             )
         )
-
-
-def get_duration(leave, enter):
-    if leave is None:
-        leave = datetime.datetime.now()
-    return (leave - enter)
-
-
-def format_duration(duration):
-    seconds = int(duration % SECONDS_IN_MINUTE)
-    minutes = int((duration % SECONDS_IN_HOUR) // SECONDS_IN_MINUTE)
-    hour = int(duration // SECONDS_IN_HOUR)
-    return datetime.timedelta(hours=hour, minutes=minutes, seconds=seconds)
-
-
-def is_visit_long(duration, hour):
-    return duration > datetime.timedelta(hours=hour)
