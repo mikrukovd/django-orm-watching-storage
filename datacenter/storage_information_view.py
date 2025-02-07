@@ -1,7 +1,7 @@
 from datacenter.models import Visit
 from django.shortcuts import render
 from django.utils.timezone import localtime
-from datacenter.models import get_duration, format_duration, is_visit_long
+from datacenter.operations_with_time import get_duration, format_duration, is_visit_long
 
 
 def storage_information_view(request):
@@ -13,9 +13,8 @@ def storage_information_view(request):
         entered_at = localtime(visit.entered_at)
         leaved_at = localtime(visit.leaved_at)
         duration = get_duration(leave=leaved_at, enter=entered_at)
-        flag = is_visit_long(duration=duration, hour=1)
-        duration = duration.total_seconds()
         duration = format_duration(duration=duration)
+        flag = is_visit_long(duration=duration, hour=1)
 
         person_info = {
             'who_entered': name,
