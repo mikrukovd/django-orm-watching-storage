@@ -12,9 +12,8 @@ def storage_information_view(request):
         name = visit.passcard.owner_name
         entered_at = localtime(visit.entered_at)
         leaved_at = localtime(visit.leaved_at)
-        duration = get_duration(leave=leaved_at, enter=entered_at)
-        duration = format_duration(duration=duration)
-        flag = is_visit_long(duration=duration, hour=1)
+        duration = format_duration(duration=get_duration(leave=leaved_at, enter=entered_at))
+        flag = is_visit_long(duration=get_duration(leave=leaved_at, enter=entered_at), minutes=60)
 
         person_info = {
             'who_entered': name,
