@@ -13,7 +13,7 @@ def format_duration(duration):
     seconds = int(duration % SECONDS_IN_MINUTE)
     minutes = int((duration % SECONDS_IN_HOUR) // SECONDS_IN_MINUTE)
     hours = int(duration // SECONDS_IN_HOUR)
-    return f"{hours}:{minutes}:{seconds}"
+    return f"{hours:02}:{minutes:02}:{seconds:02}"
 
 
 def is_visit_long(duration, minutes):
