@@ -13,8 +13,8 @@ def format_duration(duration):
     seconds = int(duration % SECONDS_IN_MINUTE)
     minutes = int((duration % SECONDS_IN_HOUR) // SECONDS_IN_MINUTE)
     hours = int(duration // SECONDS_IN_HOUR)
-    return datetime.timedelta(hours=hours, minutes=minutes, seconds=seconds)
+    return f"{hours}:{minutes}:{seconds}"
 
 
-def is_visit_long(duration, hour):
-    return duration > datetime.timedelta(hours=hour)
+def is_visit_long(duration, minutes):
+    return duration > datetime.timedelta(minutes=minutes).total_seconds()
