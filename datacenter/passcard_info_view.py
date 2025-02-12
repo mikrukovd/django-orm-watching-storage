@@ -11,13 +11,13 @@ def passcard_info_view(request, passcode):
     visits = Visit.objects.filter(passcard=passcard)
 
     for visit in visits:
-        enter = localtime(visit.entered_at)
-        leave = localtime(visit.leaved_at)
-        duration = format_duration(duration=get_duration(enter=enter, leave=leave))
-        flag = is_visit_long(duration=get_duration(enter=enter, leave=leave), minutes=60)
+        entered_at = localtime(visit.entered_at)
+        leave_at = localtime(visit.leaved_at)
+        duration = format_duration(duration=get_duration(enter=entered_at, leave=leave_at))
+        flag = is_visit_long(duration=get_duration(enter=entered_at, leave=leave_at), minutes=60)
 
         visit_data = {
-            'entered_at': enter,
+            'entered_at': entered_at,
             'duration': duration,
             'is_strange': flag
         }
